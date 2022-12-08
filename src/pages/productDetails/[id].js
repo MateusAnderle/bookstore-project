@@ -15,6 +15,7 @@ import Image from 'next/image'
 import Separator from '../../components/separator'
 import { useRouter } from 'next/router'
 import { BookData } from '../../utils/jsonServer'
+import Head from 'next/head'
 
 export default function ProductDetails() {
   const router = useRouter()
@@ -23,6 +24,9 @@ export default function ProductDetails() {
 
   return (
     <ProductDetailContainer>
+      <Head>
+        <title>Sebus</title>
+      </Head>
       <ProductDetailContent>
         <ProductTopContent>
           <ProductImageAndDescription>

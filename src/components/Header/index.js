@@ -10,6 +10,13 @@ import { Books, MapPinLine, User, ShoppingCart } from 'phosphor-react'
 import Link from 'next/link'
 
 export default function Header() {
+  const categories = {
+    maisVendidos: 'Mais vendidos',
+    lancamentos: 'Lançamentos',
+    livros: 'Livros',
+    decoracoes: 'Decorações',
+    educativo: 'Educativo',
+  }
   return (
     <HeaderContainer>
       <MainHeader>
@@ -34,11 +41,21 @@ export default function Header() {
 
       <NavContainer>
         <NavHeader>
-          <li>Mais Vendidos</li>
-          <li>Lançamentos</li>
-          <li>Livros</li>
-          <li>Decorações</li>
-          <li>Educativo</li>
+          <Link href={`/categoryList/${categories.maisVendidos}`}>
+            <li>Mais Vendidos</li>
+          </Link>
+          <Link href={`/categoryList/${categories.lancamentos}`}>
+            <li>Lançamentos</li>
+          </Link>
+          <Link href={`/categoryList/${categories.livros}`}>
+            <li>Livros</li>
+          </Link>
+          <Link href={`/categoryList/${categories.decoracoes}`}>
+            <li>Decorações</li>
+          </Link>
+          <Link href={`/categoryList/${categories.educativo}`}>
+            <li>Educativo</li>
+          </Link>
         </NavHeader>
       </NavContainer>
     </HeaderContainer>

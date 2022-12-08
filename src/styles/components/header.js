@@ -103,6 +103,10 @@ export const NavHeader = styled('ul', {
   alignItems: 'center',
   listStyleType: 'none',
 
+  a: {
+    textDecoration: 'none',
+  },
+
   li: {
     display: 'flex',
     height: '50px',
@@ -111,6 +115,8 @@ export const NavHeader = styled('ul', {
     alignItems: 'center',
     fontWeight: 'bold',
     fontSize: '16px',
+    color: '$black',
+    padding: '0 77px',
 
     '&:hover': {
       background: '#BFB88B',

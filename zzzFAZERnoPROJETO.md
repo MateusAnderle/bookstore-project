@@ -1,4 +1,4 @@
-[] Criar página para cada categoria
+[] Criar página para cada categoria (Com as rotas dinamicas, posso criar uma página modelo e filtrar pela query da rota.)
 
 [] Criar uma página com Mapa (onde estamos)
 
@@ -24,7 +24,7 @@
 
 [] fazer paginação com resposta do backend (api get pagination)
 
-[] Pensar em um modo de estruturar o objeto com os livros, categorias, filtros, tudo mais.
+[] Pensar em um modo de estruturar o objeto com os livros, categorias, filtros, tudo mais. (Backend)
 
 [] fazer responsivo, fazer mobile, fazer backend
 
