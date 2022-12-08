@@ -7,18 +7,21 @@ import {
   NavHeader,
 } from '../../styles/components/header'
 import { Books, MapPinLine, User, ShoppingCart } from 'phosphor-react'
+import Link from 'next/link'
 
 export default function Header() {
   return (
     <HeaderContainer>
       <MainHeader>
-        <LogoWrapper>
-          <Books />
-          <div>
-            <h1>Sebus</h1>
-            <span>Livraria de Novos e Usados</span>
-          </div>
-        </LogoWrapper>
+        <Link href="/" style={{ textDecoration: 'none' }}>
+          <LogoWrapper>
+            <Books />
+            <div>
+              <h1>Sebus</h1>
+              <span>Livraria de Novos e Usados</span>
+            </div>
+          </LogoWrapper>
+        </Link>
 
         <InputAndIcons>
           <input />

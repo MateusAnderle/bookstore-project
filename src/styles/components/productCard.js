@@ -7,10 +7,14 @@ export const ProductWrapper = styled('header', {
   background: '$white',
   borderRadius: '10px',
   transition: '0.2s',
+  color: '$black',
+  height: '400px',
+  padding: '0 10px',
 
   h4: {
-    fontSize: '22px',
+    fontSize: '20px',
     marginTop: '10px',
+    textAlign: 'center',
   },
 
   p: {

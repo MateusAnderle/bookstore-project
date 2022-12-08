@@ -60,7 +60,10 @@ export const ProductDescriptionText = styled('span', {
         fontSize: '16px',
         fontWeight: 'regular',
         marginTop: '20px',
+        height: '117px',
         marginBottom: '20px',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
       },
     },
   },
@@ -161,14 +164,6 @@ export const ProductDatasheet = styled('div', {
 
   h3: {
     marginBottom: '20px',
-  },
-})
-
-export const ProductTable = styled('table', {
-  width: '100%',
-
-  tr: {
-    marginBottom: '10px',
   },
 })
 
