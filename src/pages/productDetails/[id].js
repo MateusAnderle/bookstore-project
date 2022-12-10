@@ -16,11 +16,35 @@ import Separator from '../../components/separator'
 import { useRouter } from 'next/router'
 import { BookData } from '../../utils/jsonServer'
 import Head from 'next/head'
+import { useForm } from 'react-hook-form'
+import * as Yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { zipCodeApi } from '../../utils/api'
+import { useState } from 'react'
 
 export default function ProductDetails() {
   const router = useRouter()
   const id = router.query.id
   const bookDataId = BookData[id - 1]
+  const [zipCodeObject, setZipCodeObject] = useState({})
+
+  const schema = Yup.object().shape({
+    zipCode: Yup.number()
+      .typeError('Informe um valor numérico')
+      .positive('O valor não pode ser negativo')
+      .required('O valor é obrigatório'),
+  })
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) })
+
+  const onSubmit = async (data) => {
+    const response = await zipCodeApi.get(`/${data.zipCode}/json/`)
+    setZipCodeObject(response.data)
+  }
 
   return (
     <ProductDetailContainer>
@@ -60,16 +84,47 @@ export default function ProductDetails() {
               {bookDataId.preco}
             </ProductDescriptionText>
             <ProductDescriptionText variant="description">
-              Em 1x no cartão de crédito e receba R$ 5,00 de cashback
+              Em 1x no cartão de crédito sem juros
             </ProductDescriptionText>
             <Separator top={30} bottom={30} />
             <ProductDescriptionText variant="description">
-              Calcular frete:
+              Calcular tempo de entrega:
             </ProductDescriptionText>
-            <span>
-              <input placeholder="Digite aqui seu cep" />
-              <ProductButton variant="blue">OK</ProductButton>
-            </span>
+
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+                name="zipCode"
+                placeholder="Digite seu CEP"
+                minLength="8"
+                maxLength="8"
+                {...register('zipCode', { required: true })}
+              />
+
+              <input type="submit" value="OK" />
+              {errors.zipCode && (
+                <span style={{ marginTop: '5px' }}>
+                  {errors.zipCode.message}
+                </span>
+              )}
+              {zipCodeObject.localidade && (
+                <div>
+                  <h4 style={{ marginTop: '5px' }}>
+                    <b>Envio para: </b>
+                  </h4>
+                  <p style={{ marginTop: '5px' }}>
+                    {' '}
+                    {zipCodeObject.logradouro}, {zipCodeObject.localidade}{' '}
+                  </p>
+                  <p style={{ marginTop: '5px' }}>
+                    <b>
+                      A entrega para esse endereço costuma demorar de 5 a 10
+                      dias úteis
+                    </b>
+                  </p>
+                </div>
+              )}
+            </form>
+
             <Separator top={30} bottom={30} />
             <ProductButton variant="green">COMPRAR</ProductButton>
             <ProductDescriptionText variant="description">

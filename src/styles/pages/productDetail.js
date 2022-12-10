@@ -91,6 +91,24 @@ export const ProductPriceAndCart = styled('div', {
     marginBottom: '10px',
   },
 
+  'input[type=submit]': {
+    border: 'none',
+    height: '40px',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    fontFamily: 'sans-serif',
+    borderRadius: '8px',
+    color: '$white',
+    background: '#80D6F7',
+    marginLeft: '5px',
+    width: '60px',
+
+    '&:hover': {
+      cursor: 'pointer',
+      background: '#63B7D7',
+    },
+  },
+
   span: {
     display: 'flex',
     flexDirection: 'row',
@@ -114,16 +132,6 @@ export const ProductButton = styled('button', {
 
   variants: {
     variant: {
-      blue: {
-        background: '#80D6F7',
-        marginLeft: '5px',
-        width: '60px',
-
-        '&:hover': {
-          cursor: 'pointer',
-          background: '#63B7D7',
-        },
-      },
       green: {
         background: '#40CD28',
 

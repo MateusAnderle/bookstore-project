@@ -18,6 +18,10 @@ export const FooterMenu = styled('div', {
   marginTop: '50px',
   marginBottom: '50px',
 
+  a: {
+    textDecoration: 'none',
+  },
+
   h3: {
     color: '$white',
     marginBottom: '30px',

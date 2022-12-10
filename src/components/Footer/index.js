@@ -5,6 +5,7 @@ import {
   TwitterLogo,
   YoutubeLogo,
 } from 'phosphor-react'
+import Link from 'next/link'
 
 export default function Footer() {
   return (
@@ -13,42 +14,54 @@ export default function Footer() {
         <div>
           <h3>Menu</h3>
           <ul>
-            <li>Mais Vendidos</li>
-            <li>Decorações</li>
-            <li>Livros Novos</li>
-            <li>Livros Usados</li>
-            <li>Livros Educativos</li>
-            <li>CD</li>
-            <li>DVD</li>
-            <li>Revistas</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>Categorias</h3>
-          <ul>
-            <li>Lançamentos</li>
-            <li>Literatura Estrangeira</li>
-            <li>Literatura Brasileira</li>
-            <li>Infato-Juvenil</li>
-            <li>Infantis</li>
-            <li>Auto-Ajuda</li>
-            <li>Religiosos</li>
+            <Link href={`/categoryList/${'Mais Vendidos'}`}>
+              <li>Mais Vendidos</li>
+            </Link>
+            <Link href={`/categoryList/${'Lançamentos'}`}>
+              <li>Lançamentos</li>
+            </Link>
+            <Link href={`/categoryList/${'Livros'}`}>
+              <li>Livros</li>
+            </Link>
+            <Link href={`/categoryList/${'Decorações'}`}>
+              <li>Decorações</li>
+            </Link>
+            <Link href={`/categoryList/${'Educativo'}`}>
+              <li>Educativo</li>
+            </Link>
+            <Link href={`/categoryList/${'CD'}`}>
+              <li>CD</li>
+            </Link>
+            <Link href={`/categoryList/${'DVD'}`}>
+              <li>DVD</li>
+            </Link>
+            <Link href={`/categoryList/${'Revistas'}`}>
+              <li>Revistas</li>
+            </Link>
           </ul>
         </div>
 
         <div>
           <h3>Informações</h3>
           <ul>
-            <li>FAQ</li>
-            <li>Sobre Nós</li>
-            <li>Atendimento ao Cliente</li>
-            <li>Onde Estamos</li>
-            <li>Entregas e Devoluções</li>
-            <li>Livros Técnicos</li>
-            <li>Termos e Condições</li>
-            <li>Metódos de Pagamento</li>
-            <li>Política de Coockies</li>
+            <Link href={`/companyInfo/${'FAQ'}`}>
+              <li>FAQ</li>
+            </Link>
+            <Link href={`/companyInfo/${'Sobre Nós'}`}>
+              <li>Sobre Nós</li>
+            </Link>
+            <Link href="/location" style={{ textDecoration: 'none' }}>
+              <li>Onde Estamos</li>
+            </Link>
+            <Link href={`/companyInfo/${'Entregas e Devoluções'}`}>
+              <li>Entregas e Devoluções</li>
+            </Link>
+            <Link href={`/companyInfo/${'Termos e Condições'}`}>
+              <li>Termos e Condições</li>
+            </Link>
+            <Link href={`/companyInfo/${'Política de Cookies'}`}>
+              <li>Política de Coockies</li>
+            </Link>
           </ul>
         </div>
 
@@ -61,10 +74,10 @@ export default function Footer() {
             <li>Av. Marechal Deodoro da Fonseca</li>
             <li>Centro, Jaraguá do Sul</li>
             <li>CNPJ: 08.999.999/0001-50</li>
-            <li>Feito por @matsanderle - 2022.</li>
             <li>
               <FacebookLogo /> <InstagramLogo /> <TwitterLogo /> <YoutubeLogo />
             </li>
+            <li>Feito por @matsanderle - 2022.</li>
           </ul>
         </div>
       </FooterMenu>

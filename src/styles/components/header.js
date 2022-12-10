@@ -39,8 +39,9 @@ export const InputAndIcons = styled('div', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
+  textAlign: 'center',
 
-  input: {
+  'input[type=text]': {
     height: '35px',
     width: '450px',
     border: 'none',
@@ -50,11 +51,11 @@ export const InputAndIcons = styled('div', {
     background: '#FBEFE3',
     outline: 'none',
     padding: '5px 20px',
-    fontSize: '18px',
+    fontSize: '16px',
     alignItems: 'center',
   },
 
-  button: {
+  'input[type=submit]': {
     border: 'none',
     fontSize: '16px',
     fontWeight: 'bold',

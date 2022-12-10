@@ -11,18 +11,13 @@ export default function CategoryList() {
   const router = useRouter()
   const category = router.query.description
 
-  const filteredList = BookData.filter((item) => item.id > 3) // LEMBRAR DE APAGAR ESSA LISTA CONSOLE.LOG()
-
   return (
     <CentralizeCategoryContainer>
       <CategoryContainer>
         <Head>
           <title>Sebus</title>
         </Head>
-        <BooksList
-          title={category || 'Sebus'}
-          bookData={category === 'Mais vendidos' ? filteredList : BookData} // LEMBRAR DE APAGAR ESSA LISTA CONSOLE.LOG()
-        />
+        <BooksList title={category || 'Sebus'} bookData={BookData} />
       </CategoryContainer>
     </CentralizeCategoryContainer>
   )
