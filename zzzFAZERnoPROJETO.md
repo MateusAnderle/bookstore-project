@@ -1,17 +1,21 @@
-[] Criar página e formulário de REGISTRATION
+---[] Criar contexto para o carrinho
+---[] atualizar notificação azulzinha no carrinho do header
+---[] (toast daisy UI)
+---[] funcionalidades de apagar produto do carrinho e de editar quantidade
 
-[] Criar carrinho de compras + notificação de itens no carrinho(bolinha vermelha com itens) + (toast daisy UI)
---- [] Criar formulário de validação para CEP (olhar apiCep em utils)
---- [] Fazer escolha do método de pagamento
+## Finalização do pedido
 
----
+--- [] pegar objeto do carrinho
+--- [] Criar a validação no formulário de finalizaão do pedido
+--- [] enviar tudo para a API**
+
 
 ---
 
 https://www.youtube.com/watch?v=Mzt_eg5IBiU&ab_channel=MatheusBattisti-HoradeCodar
 [] Adicionar outras funcionalidades do next, como server side render
 
----
+## colocar no githubpages
 
 ---
 
@@ -24,3 +28,5 @@ PRECISO DE UM BACKEND
 [] Fazer barra de buscas via chamada ao backend
 [] Pensar em um modo de estruturar o objeto com os livros, categorias, filtros, tudo mais. (Backend)
 [] fazer responsivo, fazer mobile, fazer backend
+
+[] Dentro do carrinho de compras, fazer opção se o cliente quiser se cadastrar, se quiser se logar, ou se já estiver logado.

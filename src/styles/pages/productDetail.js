@@ -65,6 +65,11 @@ export const ProductDescriptionText = styled('span', {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
       },
+      footer: {
+        fontSize: '12px',
+        fontWeight: 'bold',
+        marginTop: '5px',
+      },
     },
   },
 })
@@ -82,7 +87,6 @@ export const ProductPriceAndCart = styled('div', {
     border: '1px solid #ccc',
     outline: 'none',
     height: '40px',
-    width: '280px',
     borderRadius: '8px',
     padding: '10px',
     fontSize: '14px',
@@ -114,6 +118,10 @@ export const ProductPriceAndCart = styled('div', {
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
+  },
+
+  b: {
+    fontSize: '14px',
   },
 })
 

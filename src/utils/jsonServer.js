@@ -14,6 +14,7 @@ export const BookData = [
     ano: '2017',
     genero: 'Auto-ajuda',
     image: livro1,
+    quantidade: 1,
     precoSugerido: '34,90',
     preco: 'R$ 17,90',
     sinopse:
@@ -39,6 +40,7 @@ export const BookData = [
     ano: '2015',
     genero: 'Auto-ajuda',
     image: livro2,
+    quantidade: 1,
     precoSugerido: '24,90',
     preco: 'R$ 9,90',
     sinopse:
@@ -64,6 +66,7 @@ export const BookData = [
     ano: '2019',
     genero: 'Auto-ajuda',
     image: livro3,
+    quantidade: 1,
     precoSugerido: '22,90',
     preco: 'R$ 17,90',
     sinopse:
@@ -89,6 +92,7 @@ export const BookData = [
     ano: '2018',
     genero: 'Ficção clássica',
     image: livro4,
+    quantidade: 1,
     precoSugerido: '12,90',
     preco: 'R$ 11,90',
     sinopse:
@@ -114,6 +118,7 @@ export const BookData = [
     ano: '2019',
     genero: 'Ficção clássica',
     image: livro5,
+    quantidade: 1,
     precoSugerido: '24,90',
     preco: 'R$ 15,90',
     sinopse:
@@ -139,6 +144,7 @@ export const BookData = [
     ano: '2019',
     genero: 'Terror',
     image: livro6,
+    quantidade: 1,
     precoSugerido: '54,90',
     preco: 'R$ 35,90',
     sinopse:
@@ -164,6 +170,7 @@ export const BookData = [
     ano: '2014',
     genero: 'Suspense, terror',
     image: livro7,
+    quantidade: 1,
     precoSugerido: '59,90',
     preco: 'R$ 34,90',
     sinopse:

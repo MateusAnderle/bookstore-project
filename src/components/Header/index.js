@@ -5,8 +5,9 @@ import {
   MainHeader,
   NavContainer,
   NavHeader,
+  Notification,
 } from '../../styles/components/header'
-import { Books, MapPinLine, User, ShoppingCart } from 'phosphor-react'
+import { Books, User, ShoppingCart } from 'phosphor-react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 
@@ -43,13 +44,16 @@ export default function Header() {
             <input type="submit" value="Buscar" />
           </form>
 
-          <Link href="/location" style={{ textDecoration: 'none' }}>
-            <MapPinLine />
-          </Link>
           <Link href="/login" style={{ textDecoration: 'none' }}>
             <User />
           </Link>
-          <ShoppingCart />
+
+          <Link href="/cart" style={{ textDecoration: 'none' }}>
+            <Notification>
+              <ShoppingCart />
+              <span>5</span>
+            </Notification>
+          </Link>
         </InputAndIcons>
       </MainHeader>
 

@@ -17,8 +17,6 @@ import { useRouter } from 'next/router'
 import { BookData } from '../../utils/jsonServer'
 import Head from 'next/head'
 import { useForm } from 'react-hook-form'
-import * as Yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
 import { zipCodeApi } from '../../utils/api'
 import { useState } from 'react'
 
@@ -28,18 +26,11 @@ export default function ProductDetails() {
   const bookDataId = BookData[id - 1]
   const [zipCodeObject, setZipCodeObject] = useState({})
 
-  const schema = Yup.object().shape({
-    zipCode: Yup.number()
-      .typeError('Informe um valor numérico')
-      .positive('O valor não pode ser negativo')
-      .required('O valor é obrigatório'),
-  })
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) })
+  } = useForm()
 
   const onSubmit = async (data) => {
     const response = await zipCodeApi.get(`/${data.zipCode}/json/`)
@@ -108,9 +99,9 @@ export default function ProductDetails() {
               )}
               {zipCodeObject.localidade && (
                 <div>
-                  <h4 style={{ marginTop: '5px' }}>
+                  <h5 style={{ marginTop: '5px' }}>
                     <b>Envio para: </b>
-                  </h4>
+                  </h5>
                   <p style={{ marginTop: '5px' }}>
                     {' '}
                     {zipCodeObject.logradouro}, {zipCodeObject.localidade}{' '}
@@ -127,7 +118,7 @@ export default function ProductDetails() {
 
             <Separator top={30} bottom={30} />
             <ProductButton variant="green">COMPRAR</ProductButton>
-            <ProductDescriptionText variant="description">
+            <ProductDescriptionText variant="footer">
               Este produto é vendido e entregue por Sebus
             </ProductDescriptionText>
           </ProductPriceAndCart>

@@ -89,6 +89,22 @@ export const InputAndIcons = styled('div', {
   },
 })
 
+export const Notification = styled('div', {
+  position: 'relative',
+
+  span: {
+    position: 'absolute',
+    top: '-8px',
+    right: '-10px',
+    background: '#80D6F7',
+    color: '$black',
+    padding: '5px 8px',
+    borderRadius: '15px',
+    fontSize: '12px',
+    fontWeight: 'bold',
+  },
+})
+
 export const NavContainer = styled('nav', {
   display: 'flex',
   width: '100%',
