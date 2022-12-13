@@ -20,7 +20,7 @@ export default function ProductCard({ data }) {
 
         <h4>{data.livro}</h4>
         <p>{data.autor}</p>
-        <h5>{data.preco}</h5>
+        <h5>R$ {data.preco.toFixed(2)}</h5>
       </ProductWrapper>
     </Link>
   )

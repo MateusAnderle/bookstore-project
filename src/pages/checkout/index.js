@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useContext, useState } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 import {
   CentralizeCheckoutContainer,
   CheckoutContainer,
@@ -12,12 +14,23 @@ import {
 import { zipCodeApi } from '../../utils/api'
 
 export default function Checkout() {
+  const router = useRouter()
   const types = ['Cartão de Crédito', 'Boleto Bancário', 'PIX (QR Code)']
   const [finalDelivery, setFinalDelivery] = useState()
   const [fetchZipCode, setFetchZipCode] = useState()
   const [number, setNumber] = useState('')
   const [referencePoint, setReferencePoint] = useState('')
   const [active, setActive] = useState(types[0])
+  const {
+    totalCartCheckout,
+    products,
+    setCheckoutDataToApi,
+    setProducts,
+    setTotalCartCheckout,
+  } = useContext(CartContext)
+  const cartToNumber = parseFloat(totalCartCheckout.totalPriceCart)
+  const frete = 15
+  const totalCheckout = cartToNumber + frete
 
   async function fetchApiZipCode(e) {
     const zipCodeFiltered = e.target.value
@@ -42,6 +55,13 @@ export default function Checkout() {
       prazo: 10,
       payment: active,
     })
+  }
+
+  function sendToApi() {
+    setCheckoutDataToApi([products, totalCartCheckout, finalDelivery]) // Criar rota para mandar para API
+    setProducts([])
+    setTotalCartCheckout([])
+    router.push(`/checkoutFinalization`)
   }
 
   return (
@@ -92,8 +112,8 @@ export default function Checkout() {
           <h3>Resumo do pedido</h3>
 
           <h4>Produtos</h4>
-          <p>Quantidade de itens: 35</p>
-          <p>Valor total do produtos: R$ 352,00</p>
+          <p>Quantidade de itens: {totalCartCheckout.numberOfItems}</p>
+          <p>Valor total do produtos: R$ {totalCartCheckout.totalPriceCart}</p>
 
           {finalDelivery && (
             <>
@@ -109,11 +129,10 @@ export default function Checkout() {
               <p>Referência: {finalDelivery.referencePoint}</p>
 
               <p>
-                Prazo de entrega estimado:{' '}
-                <b>{finalDelivery.valorFrete} dias</b>
+                Prazo de entrega estimado: <b>{finalDelivery.prazo} dias</b>
               </p>
               <p>
-                Valor do frete: <b>R$ {finalDelivery.prazo},00</b>
+                Valor do frete: <b>R$ {finalDelivery.valorFrete.toFixed(2)}</b>
               </p>
 
               <h4>Pagamento</h4>
@@ -123,9 +142,11 @@ export default function Checkout() {
             </>
           )}
 
-          <h2>Total do pedido: R$ 367,00</h2>
+          {finalDelivery && (
+            <h2>Total do pedido: R$ {totalCheckout.toFixed(2)}</h2>
+          )}
 
-          <button>Finalizar Compra</button>
+          <button onClick={sendToApi}>Finalizar Compra</button>
         </CheckoutReview>
       </CheckoutContainer>
     </CentralizeCheckoutContainer>

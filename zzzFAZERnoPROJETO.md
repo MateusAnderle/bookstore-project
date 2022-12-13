@@ -1,11 +1,3 @@
-## Finalização do pedido
-
---- [] pegar objeto do carrinho
---- [] Criar a validação no formulário de finalizaão do pedido
---- [] enviar tudo para a API\*\*
-
----
-
 https://www.youtube.com/watch?v=Mzt_eg5IBiU&ab_channel=MatheusBattisti-HoradeCodar
 [] Adicionar outras funcionalidades do next, como server side render
 
@@ -22,5 +14,4 @@ PRECISO DE UM BACKEND
 [] Fazer barra de buscas via chamada ao backend
 [] Pensar em um modo de estruturar o objeto com os livros, categorias, filtros, tudo mais. (Backend)
 [] fazer responsivo, fazer mobile, fazer backend
-
 [] Dentro do carrinho de compras, fazer opção se o cliente quiser se cadastrar, se quiser se logar, ou se já estiver logado.

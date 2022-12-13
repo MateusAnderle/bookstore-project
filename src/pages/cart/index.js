@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { MinusCircle, PlusCircle, Trash } from 'phosphor-react'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import {
   CartButton,
@@ -21,9 +21,16 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export default function Cart() {
   const router = useRouter()
+  const [itemsCart, setItemsCart] = useState()
+  const [totalCart, setTotalCart] = useState()
 
-  const { products, removeProductCart, addQuantity, subQuantity } =
-    useContext(CartContext)
+  const {
+    products,
+    removeProductCart,
+    addQuantity,
+    subQuantity,
+    setTotalCartCheckout,
+  } = useContext(CartContext)
 
   function removeProduct(productId) {
     removeProductCart(productId)
@@ -42,6 +49,40 @@ export default function Cart() {
     const notify = () => toast.warn('Produto subtraído!')
     notify()
   }
+
+  function goToCheckout() {
+    setTotalCartCheckout({
+      numberOfItems: itemsCart,
+      totalPriceCart: totalCart,
+    })
+    router.push(`/checkout`)
+  }
+
+  useEffect(() => {
+    function itemsQuantity() {
+      const initialValue = 0
+      const numberOfItems = products.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.quantidade,
+        initialValue,
+      )
+      setItemsCart(numberOfItems)
+    }
+
+    itemsQuantity()
+  }, [products])
+
+  useEffect(() => {
+    function totalPrice() {
+      const initialValue = 0
+      const priceOfItems = products.reduce(
+        (accumulator, currentValue) =>
+          accumulator + currentValue.preco * currentValue.quantidade,
+        initialValue,
+      )
+      setTotalCart(priceOfItems.toFixed(2))
+    }
+    totalPrice()
+  }, [products])
 
   return (
     <CentralizeCartContainer>
@@ -97,7 +138,7 @@ export default function Cart() {
                           />
                         </TdCart>
                       </td>
-                      <td>{item.preco}</td>
+                      <td>R$ {item.preco.toFixed(2)}</td>
                       <td>
                         <Trash
                           onClick={() => removeProduct(item.id)}
@@ -115,18 +156,16 @@ export default function Cart() {
               <CartContent>
                 <CartInsideBox>
                   <div>Quantidade total:</div>
-                  <div>1</div>
+                  <div>{itemsCart}</div>
                 </CartInsideBox>
                 <CartInsideBox>
                   <div>Valor da compra:</div>
-                  <div>R$ 35,00</div>
+                  <div>R$ {totalCart}</div>
                 </CartInsideBox>
 
                 <span>Sua compra pode ser parcelada em até 10x sem juros</span>
 
-                <CartButton onClick={() => router.push(`/checkout`)}>
-                  Finalizar compra
-                </CartButton>
+                <CartButton onClick={goToCheckout}>Finalizar compra</CartButton>
               </CartContent>
             </CartTotal>
           </>

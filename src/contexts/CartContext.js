@@ -4,6 +4,8 @@ export const CartContext = createContext([])
 
 export function CartContextProvider({ children }) {
   const [products, setProducts] = useState([])
+  const [totalCartCheckout, setTotalCartCheckout] = useState([])
+  const [checkoutDataToApi, setCheckoutDataToApi] = useState()
 
   function addProductCart(object) {
     setProducts([...products, object])
@@ -45,11 +47,16 @@ export function CartContextProvider({ children }) {
     <CartContext.Provider
       value={{
         products,
+        setProducts,
         addProductCart,
         removeProductCart,
         addQuantity,
         clearCart,
         subQuantity,
+        totalCartCheckout,
+        setTotalCartCheckout,
+        checkoutDataToApi,
+        setCheckoutDataToApi,
       }}
     >
       {children}

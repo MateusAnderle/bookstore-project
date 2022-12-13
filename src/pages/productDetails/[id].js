@@ -72,111 +72,113 @@ export default function ProductDetails() {
         pauseOnHover
         theme="light"
       />
-      <ProductDetailContent>
-        <ProductTopContent>
-          <ProductImageAndDescription>
-            <Image
-              src={bookDataId.image}
-              width={300}
-              height={400}
-              alt=""
-              style={{ objectFit: 'cover' }}
-            />
-
-            <ProductDescriptionTop>
-              <ProductDescriptionText variant="title">
-                {bookDataId.livro}
-              </ProductDescriptionText>
-              <ProductDescriptionText variant="description">
-                {bookDataId.autor}
-              </ProductDescriptionText>
-              <ProductDescriptionText variant="synopsis">
-                {bookDataId.sinopse}
-              </ProductDescriptionText>
-              <a href="#">Mais informações</a>
-            </ProductDescriptionTop>
-          </ProductImageAndDescription>
-
-          <ProductPriceAndCart>
-            <ProductDescriptionText variant="description">
-              Preço sugerido na editora: {bookDataId.precoSugerido}
-            </ProductDescriptionText>
-            <ProductDescriptionText variant="title">
-              {bookDataId.preco}
-            </ProductDescriptionText>
-            <ProductDescriptionText variant="description">
-              Em 1x no cartão de crédito sem juros
-            </ProductDescriptionText>
-            <Separator top={30} bottom={30} />
-            <ProductDescriptionText variant="description">
-              Calcular tempo de entrega:
-            </ProductDescriptionText>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <input
-                name="zipCode"
-                placeholder="Digite seu CEP"
-                minLength="8"
-                maxLength="8"
-                {...register('zipCode', { required: true })}
+      {bookDataId && (
+        <ProductDetailContent>
+          <ProductTopContent>
+            <ProductImageAndDescription>
+              <Image
+                src={bookDataId.image}
+                width={300}
+                height={400}
+                alt=""
+                style={{ objectFit: 'cover' }}
               />
 
-              <input type="submit" value="OK" />
-              {errors.zipCode && (
-                <span style={{ marginTop: '5px' }}>
-                  {errors.zipCode.message}
-                </span>
-              )}
-              {zipCodeObject.localidade && (
-                <div>
-                  <h5 style={{ marginTop: '5px' }}>
-                    <b>Envio para: </b>
-                  </h5>
-                  <p style={{ marginTop: '5px' }}>
-                    {' '}
-                    {zipCodeObject.logradouro}, {zipCodeObject.localidade}{' '}
-                  </p>
-                  <p style={{ marginTop: '5px' }}>
-                    <b>
-                      A entrega para esse endereço costuma demorar de 5 a 10
-                      dias úteis
-                    </b>
-                  </p>
-                </div>
-              )}
-            </form>
+              <ProductDescriptionTop>
+                <ProductDescriptionText variant="title">
+                  {bookDataId.livro}
+                </ProductDescriptionText>
+                <ProductDescriptionText variant="description">
+                  {bookDataId.autor}
+                </ProductDescriptionText>
+                <ProductDescriptionText variant="synopsis">
+                  {bookDataId.sinopse}
+                </ProductDescriptionText>
+                <a href="#">Mais informações</a>
+              </ProductDescriptionTop>
+            </ProductImageAndDescription>
 
-            <Separator top={30} bottom={30} />
-            <ProductButton onClick={addToCart} variant="green">
-              COMPRAR
-            </ProductButton>
-            <ProductDescriptionText variant="footer">
-              Este produto é vendido e entregue por Sebus
-            </ProductDescriptionText>
-          </ProductPriceAndCart>
-        </ProductTopContent>
+            <ProductPriceAndCart>
+              <ProductDescriptionText variant="description">
+                Preço sugerido na editora: {bookDataId.precoSugerido}
+              </ProductDescriptionText>
+              <ProductDescriptionText variant="title">
+                R$ {bookDataId.preco.toFixed(2)}
+              </ProductDescriptionText>
+              <ProductDescriptionText variant="description">
+                Em 1x no cartão de crédito sem juros
+              </ProductDescriptionText>
+              <Separator top={30} bottom={30} />
+              <ProductDescriptionText variant="description">
+                Calcular tempo de entrega:
+              </ProductDescriptionText>
 
-        <ProductSynopsis>
-          <h3>Sinopse</h3>
-          <p>{bookDataId.sinopse}</p>
-        </ProductSynopsis>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <input
+                  name="zipCode"
+                  placeholder="Digite seu CEP"
+                  minLength="8"
+                  maxLength="8"
+                  {...register('zipCode', { required: true })}
+                />
 
-        <ProductDatasheet>
-          <h3>Ficha técnica</h3>
-          <table>
-            <tbody>
-              {bookDataId.fichaTecnica?.map((item) => {
-                return (
-                  <tr key={item.id}>
-                    <Td variant="key">{item.chave}</Td>
-                    <Td variant="value">{item.valor}</Td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </ProductDatasheet>
-      </ProductDetailContent>
+                <input type="submit" value="OK" />
+                {errors.zipCode && (
+                  <span style={{ marginTop: '5px' }}>
+                    {errors.zipCode.message}
+                  </span>
+                )}
+                {zipCodeObject.localidade && (
+                  <div>
+                    <h5 style={{ marginTop: '5px' }}>
+                      <b>Envio para: </b>
+                    </h5>
+                    <p style={{ marginTop: '5px' }}>
+                      {' '}
+                      {zipCodeObject.logradouro}, {zipCodeObject.localidade}{' '}
+                    </p>
+                    <p style={{ marginTop: '5px' }}>
+                      <b>
+                        A entrega para esse endereço costuma demorar de 5 a 10
+                        dias úteis
+                      </b>
+                    </p>
+                  </div>
+                )}
+              </form>
+
+              <Separator top={30} bottom={30} />
+              <ProductButton onClick={addToCart} variant="green">
+                COMPRAR
+              </ProductButton>
+              <ProductDescriptionText variant="footer">
+                Este produto é vendido e entregue por Sebus
+              </ProductDescriptionText>
+            </ProductPriceAndCart>
+          </ProductTopContent>
+
+          <ProductSynopsis>
+            <h3>Sinopse</h3>
+            <p>{bookDataId.sinopse}</p>
+          </ProductSynopsis>
+
+          <ProductDatasheet>
+            <h3>Ficha técnica</h3>
+            <table>
+              <tbody>
+                {bookDataId.fichaTecnica?.map((item) => {
+                  return (
+                    <tr key={item.id}>
+                      <Td variant="key">{item.chave}</Td>
+                      <Td variant="value">{item.valor}</Td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </ProductDatasheet>
+        </ProductDetailContent>
+      )}
     </ProductDetailContainer>
   )
 }
