@@ -18,13 +18,17 @@ import { BookData } from '../../utils/jsonServer'
 import Head from 'next/head'
 import { useForm } from 'react-hook-form'
 import { zipCodeApi } from '../../utils/api'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CartContext } from '../../contexts/CartContext'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function ProductDetails() {
   const router = useRouter()
   const id = router.query.id
   const bookDataId = BookData[id - 1]
   const [zipCodeObject, setZipCodeObject] = useState({})
+  const { addProductCart, products } = useContext(CartContext)
 
   const {
     register,
@@ -37,11 +41,37 @@ export default function ProductDetails() {
     setZipCodeObject(response.data)
   }
 
+  function addToCart() {
+    const findEqual = products.find((item) => item.id === bookDataId.id)
+    if (findEqual) {
+      const notify = () => toast.error('Produto já existente no carrinho!')
+      notify()
+      return
+    }
+    bookDataId.quantidade = 1
+    addProductCart(bookDataId)
+    const notify = () => toast.success('Produto adicionado ao carrinho!')
+    notify()
+  }
+
   return (
     <ProductDetailContainer>
       <Head>
         <title>Sebus</title>
       </Head>
+      <ToastContainer
+        style={{ marginTop: '60px' }}
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <ProductDetailContent>
         <ProductTopContent>
           <ProductImageAndDescription>
@@ -117,7 +147,9 @@ export default function ProductDetails() {
             </form>
 
             <Separator top={30} bottom={30} />
-            <ProductButton variant="green">COMPRAR</ProductButton>
+            <ProductButton onClick={addToCart} variant="green">
+              COMPRAR
+            </ProductButton>
             <ProductDescriptionText variant="footer">
               Este produto é vendido e entregue por Sebus
             </ProductDescriptionText>

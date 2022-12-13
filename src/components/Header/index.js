@@ -10,9 +10,12 @@ import {
 import { Books, User, ShoppingCart } from 'phosphor-react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 
 export default function Header() {
   const { register, handleSubmit } = useForm()
+  const { products } = useContext(CartContext)
 
   const onSubmit = async (data) => {
     alert(`Você pesquisou por: ${data.search}`)
@@ -51,7 +54,7 @@ export default function Header() {
           <Link href="/cart" style={{ textDecoration: 'none' }}>
             <Notification>
               <ShoppingCart />
-              <span>5</span>
+              {products.length === 0 ? null : <span>{products.length}</span>}
             </Notification>
           </Link>
         </InputAndIcons>

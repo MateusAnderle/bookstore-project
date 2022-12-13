@@ -1,14 +1,8 @@
----[] Criar contexto para o carrinho
----[] atualizar notificação azulzinha no carrinho do header
----[] (toast daisy UI)
----[] funcionalidades de apagar produto do carrinho e de editar quantidade
-
 ## Finalização do pedido
 
 --- [] pegar objeto do carrinho
 --- [] Criar a validação no formulário de finalizaão do pedido
---- [] enviar tudo para a API**
-
+--- [] enviar tudo para a API\*\*
 
 ---
 

@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { MinusCircle, PlusCircle, Trash } from 'phosphor-react'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 import {
   CartButton,
   CartContainer,
@@ -14,17 +16,52 @@ import {
   TBody,
   TdCart,
 } from '../../styles/pages/cart'
-import { BookData } from '../../utils/jsonServer'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Cart() {
   const router = useRouter()
+
+  const { products, removeProductCart, addQuantity, subQuantity } =
+    useContext(CartContext)
+
+  function removeProduct(productId) {
+    removeProductCart(productId)
+    const notify = () => toast.warn('Produto removido do carrinho!')
+    notify()
+  }
+
+  function addProduct(productId) {
+    addQuantity(productId)
+    const notify = () => toast.success('Produto somado!')
+    notify()
+  }
+
+  function subProduct(productId) {
+    subQuantity(productId)
+    const notify = () => toast.warn('Produto subtraído!')
+    notify()
+  }
 
   return (
     <CentralizeCartContainer>
       <CartContainer>
         <h2>Carrinho de compras</h2>
+        <ToastContainer
+          style={{ marginTop: '60px' }}
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
 
-        {BookData.length ? (
+        {products.length ? (
           <>
             <Table>
               <thead>
@@ -39,7 +76,7 @@ export default function Cart() {
               </thead>
 
               <TBody>
-                {BookData.map((item) => {
+                {products.map((item) => {
                   return (
                     <tr key={item.id}>
                       <td>
@@ -49,14 +86,24 @@ export default function Cart() {
                       <td>{item.autor}</td>
                       <td>
                         <TdCart>
-                          <MinusCircle size={18} />
+                          <MinusCircle
+                            size={18}
+                            onClick={() => subProduct(item.id)}
+                          />
                           {item.quantidade}
-                          <PlusCircle size={18} />
+                          <PlusCircle
+                            size={18}
+                            onClick={() => addProduct(item.id)}
+                          />
                         </TdCart>
                       </td>
                       <td>{item.preco}</td>
                       <td>
-                        <Trash size={18} style={{ cursor: 'pointer' }} />
+                        <Trash
+                          onClick={() => removeProduct(item.id)}
+                          size={18}
+                          style={{ cursor: 'pointer' }}
+                        />
                       </td>
                     </tr>
                   )
