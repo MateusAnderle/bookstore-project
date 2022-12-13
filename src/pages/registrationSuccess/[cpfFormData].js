@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import {
   CentralizeContainerRegistrationSuccess,
   RegistrationContainerSuccess,
@@ -9,11 +8,6 @@ import SucessoImage from '../../assets/sucesso.png'
 import Image from 'next/image'
 
 export default function RegistrationSucess() {
-  const router = useRouter()
-  const rawCpfFormData = router.query.cpfFormData
-  const formData = JSON.parse(rawCpfFormData)
-  console.log(formData) // Tirar esse dados do front-end
-
   return (
     <CentralizeContainerRegistrationSuccess>
       <RegistrationContainerSuccess>
